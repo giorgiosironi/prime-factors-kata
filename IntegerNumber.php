@@ -14,10 +14,17 @@ class IntegerNumber
             return new PrimeFactors();
         }
         $factors = false;
-        for ($divisor = self::TWO(); $divisor->lessOrEqualTo($this) && !$factors; $divisor = $divisor->increment()) {
+        $divisor = self::TWO();
+        while ($this->isAcceptableDivisor($divisor) && !$factors) {
             $factors = $this->decomposeWith($divisor);
+            $divisor = $divisor->increment();
         }
         return $factors;
+    }
+
+    public function isAcceptableDivisor(IntegerNumber $divisor)
+    {
+        return $this->number >= $divisor->number;
     }
 
     public function decomposeWith(IntegerNumber $divisor)
@@ -40,11 +47,6 @@ class IntegerNumber
     public function divideBy(IntegerNumber $factor)
     {
         return new self($this->number / $factor->number);
-    }
-
-    public function lessOrEqualTo(IntegerNumber $other)
-    {
-        return $this->number <= $other->number;
     }
 
     public function increment()
