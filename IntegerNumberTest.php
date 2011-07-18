@@ -30,6 +30,9 @@ class IntegerNumberTest extends PHPUnit_Framework_TestCase
             ),
             array(
                 9, array(3, 3)
+            ),
+            array(
+                81, array(3, 3, 3, 3)
             )
         );
     }
