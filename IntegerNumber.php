@@ -14,14 +14,24 @@ class IntegerNumber
             return new PrimeFactors();
         }
         for ($divisor = self::TWO(); $divisor->lessOrEqualTo($this); $divisor = $divisor->increment()) {
-            if ($this->divisibleBy($divisor)) {
-                $divided = $this->divideBy($divisor);
-                $factors = $divided->primeFactors();
-                $factors->add($divisor);
-                return $factors;
+            $factors = $this->decomposeWith($divisor);
+            if ($factors) {
+                break;
             }
         }
-        return new PrimeFactors(array($this->number));
+        return $factors;
+    }
+
+    public function decomposeWith(IntegerNumber $divisor)
+    {
+        if ($this->divisibleBy($divisor)) {
+            $factors = new PrimeFactors();
+            $divided = $this->divideBy($divisor);
+            $factors = $divided->primeFactors();
+            $factors->add($divisor);
+            return $factors;
+        }
+        return false;
     }
 
     public function divisibleBy(IntegerNumber $factor)
