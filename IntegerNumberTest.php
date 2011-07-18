@@ -3,9 +3,21 @@ require_once 'IntegerNumber.php';
 
 class IntegerNumberTest extends PHPUnit_Framework_TestCase
 {
-    public function testDecomposesIntoItsPrimeFactors()
+    public static function numbersToDecompose()
     {
-        $number = new IntegerNumber(2);
-        $this->assertEquals(array(2), $number->primeFactors());
+        return array(
+            array(
+                2, array(2)
+            )
+        );
+    }
+
+    /**
+     * @dataProvider numbersToDecompose
+     */
+    public function testDecomposesIntoItsPrimeFactors($number, $factors)
+    {
+        $number = new IntegerNumber($number);
+        $this->assertEquals($factors, $number->primeFactors());
     }
 }
