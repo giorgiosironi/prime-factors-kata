@@ -15,6 +15,9 @@ class IntegerNumberTest extends PHPUnit_Framework_TestCase
             ),
             array(
                 4, array(2, 2)
+            ),
+            array(
+                5, array(5)
             )
         );
     }
