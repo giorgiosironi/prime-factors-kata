@@ -10,6 +10,6 @@ class IntegerNumber
 
     public function primeFactors()
     {
-        return array($this->number);
+        return new PrimeFactors(array($this->number));
     }
 }
