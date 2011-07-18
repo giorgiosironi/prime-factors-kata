@@ -8,6 +8,9 @@ class IntegerNumberTest extends PHPUnit_Framework_TestCase
         return array(
             array(
                 2, array(2)
+            ),
+            array(
+                3, array(3)
             )
         );
     }
