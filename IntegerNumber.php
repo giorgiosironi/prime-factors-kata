@@ -13,11 +13,9 @@ class IntegerNumber
         if ($this == self::ONE()) {
             return new PrimeFactors();
         }
-        for ($divisor = self::TWO(); $divisor->lessOrEqualTo($this); $divisor = $divisor->increment()) {
+        $factors = false;
+        for ($divisor = self::TWO(); $divisor->lessOrEqualTo($this) && !$factors; $divisor = $divisor->increment()) {
             $factors = $this->decomposeWith($divisor);
-            if ($factors) {
-                break;
-            }
         }
         return $factors;
     }
