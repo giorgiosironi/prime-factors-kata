@@ -1,9 +1,9 @@
 <?php
 require_once 'IntegerNumber.php';
 
-class PrimeFactorsTest extends PHPUnit_Framework_TestCase
+class IntegerNumberTest extends PHPUnit_Framework_TestCase
 {
-    public function testDecomposesNumbersIntoTheirPrimeFactors()
+    public function testDecomposesIntoItsPrimeFactors()
     {
         $number = new IntegerNumber(2);
         $this->assertEquals(array(2), $number->primeFactors());
