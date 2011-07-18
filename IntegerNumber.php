@@ -13,27 +13,44 @@ class IntegerNumber
         if ($this == self::ONE()) {
             return new PrimeFactors();
         }
-        if ($this->divisibleBy(2)) {
-            $divided = $this->divideBy(2);
-            $factors = $divided->primeFactors();
-            $factors->add(2);
-            return $factors;
+        for ($divisor = self::TWO(); $divisor->lessOrEqualTo($this); $divisor = $divisor->increment()) {
+            if ($this->divisibleBy($divisor)) {
+                $divided = $this->divideBy($divisor);
+                $factors = $divided->primeFactors();
+                $factors->add($divisor);
+                return $factors;
+            }
         }
         return new PrimeFactors(array($this->number));
     }
 
-    public function divisibleBy($factor)
+    public function divisibleBy(IntegerNumber $factor)
     {
-        return $this->number % 2 == 0;
+        return $this->number % $factor->number == 0;
     }
 
-    public function divideBy($factor)
+    public function divideBy(IntegerNumber $factor)
     {
-        return new self($this->number / $factor);
+        return new self($this->number / $factor->number);
+    }
+
+    public function lessOrEqualTo(IntegerNumber $other)
+    {
+        return $this->number <= $other->number;
+    }
+
+    public function increment()
+    {
+        return new self($this->number + 1);
     }
 
     public static function ONE()
     {
         return new self(1);
+    }
+
+    public static function TWO()
+    {
+        return new self(2);
     }
 }

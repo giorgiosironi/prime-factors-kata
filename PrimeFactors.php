@@ -1,14 +1,19 @@
 <?php
 class PrimeFactors
 {
-    private $factors;
+    private $factors = array();
 
-    public function __construct(array $factors = array())
+    public function fromScalars(array $scalars)
     {
-        $this->factors = $factors;
+        rsort($scalars);
+        $factors = new self();
+        foreach ($scalars as $scalar) {
+            $factors->add(new IntegerNumber($scalar));
+        }
+        return $factors;
     }
 
-    public function add($factor)
+    public function add(IntegerNumber $factor)
     {
         array_unshift($this->factors, $factor);
     }

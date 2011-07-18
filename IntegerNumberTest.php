@@ -27,6 +27,9 @@ class IntegerNumberTest extends PHPUnit_Framework_TestCase
             ),
             array(
                 8, array(2, 2, 2)
+            ),
+            array(
+                9, array(3, 3)
             )
         );
     }
@@ -37,7 +40,7 @@ class IntegerNumberTest extends PHPUnit_Framework_TestCase
     public function testDecomposesIntoItsPrimeFactors($number, $factors)
     {
         $number = new IntegerNumber($number);
-        $factors = new PrimeFactors($factors);
+        $factors = PrimeFactors::fromScalars($factors);
         $this->assertEquals($factors, $number->primeFactors());
     }
 }
