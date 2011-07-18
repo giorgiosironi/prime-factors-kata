@@ -10,6 +10,6 @@ class PrimeFactors
 
     public function add($factor)
     {
-        $this->factors[] = $factor;
+        array_unshift($this->factors, $factor);
     }
 }
